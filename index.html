@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body,html {
+      margin:0;
+      padding:0;
+      height:100%;
+      background:#000;
+      overflow:hidden;
+    }
+    video {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .menu {
+      position:absolute;
+      top:20px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:15px;
+      z-index:10;
+      font-family:Arial, sans-serif;
+      font-size:20px;
+    }
+    .menu span {
+      background:#fff;       /* latar belakang putih */
+      color:#000;            /* teks hitam */
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.2s;
+      font-weight:bold;
+    }
+    .menu span:hover {
+      background:#ddd;       /* abu-abu muda saat hover */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu teks di atas video -->
+  <div class="menu">
+    <span onclick="redirect('https://otieu.com/4/9582484')">HIJAB</span>
+    <span onclick="redirect('https://otieu.com/4/9799489')">SMP</span>
+    <span onclick="redirect('https://otieu.com/4/9691654')">SMK</span>
+    <span onclick="redirect('https://otieu.com/4/8039187')">JEPANG</span>
+  </div>
+
+  <video id="video" controls>
+    <source src="https://cdn.videy.co/XDNn28bU1.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video HTML5.
+  </video>
+
+  
+  <script>
+    const video = document.getElementById("video");
+    let intervalId;
+
+    // Daftar link iklan
+    const ads = [
+      "https://otieu.com/4/9582484",
+      "https://otieu.com/4/9799489",
+      "https://otieu.com/4/9691654",
+      "https://otieu.com/4/8039187"
+    ];
+    let currentAd = 0;
+
+    function redirect(link) {
+      window.open(link, "_blank");
+    }
+
+    video.addEventListener("play", () => {
+      // Buka iklan pertama kali
+      window.open(ads[currentAd], "_blank");
+
+      // Mulai rotasi iklan tiap 10 detik
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          currentAd = (currentAd + 1) % ads.length; // pindah ke iklan berikutnya
+          window.open(ads[currentAd], "_blank");
+        }, 10000);
+      }
+    });
+  </script>
+
+
+</body>
+</html>
